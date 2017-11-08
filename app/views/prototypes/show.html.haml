@@ -32,7 +32,7 @@
         = @prototype.concept
     -if user_signed_in? && current_user.id == @prototype.user_id
       .delete_button
-      =link_to "DELETE", prototype_path(@prototype), method: :delete
+      =link_to "DELETE", prototype_path, method: :delete
     .col-md-3
     %h4 Tag List
     %ul.proto-tag-list.list-inline
