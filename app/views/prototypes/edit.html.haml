@@ -1,9 +1,37 @@
-= form_for(@prototype) do |f|
-  = f.label "catch_copy", class: "catch_copy"
-  = f.text_field :catch_copy, id: "copy", class: "copy_input", placeholder: "Catch Copyを入力してください", type: "text"
+.container.proto-new
+  = form_for @prototype do |f|
+    = f.hidden_field :user_id, value: current_user.id
+    .col-md-8.col-md-offset-2
+      %header.row.user-nav.row
+        .col-md-12
+          %h4 Title
+          .proto-new-title
+            = f.text_field :title, required: true, autofocus: true, placeholder: "Input Title"
+      .row
+        .col-md-12
+          %h4 Main Thumbnail
+          .cover-image-upload#main_image_uploader
+            = f.fields_for :captured_images do |image|
+              %img.cover-image-upload
+                = image.file_field :content, required: true,onchange:'previewFile()'
+                = image.hidden_field :status, value: "main"
 
-  = f.label "concept", class: "concept"
-  = f.text_field :concept, id: "concept", class: "concept_input", placeholder: "Conceptを入力してください", type: "text"
-
-  = fields_for @prototype.captured_images do |image|
-    =image.text_field :content
+        .col-md-12
+          %h4 Sub Thumbnails
+          %ul.proto-sub-list.list-group
+            - 3.times do |i|
+              %li.list-group-item.col-md-4
+                .image-upload
+                  = f.fields_for :captured_images do |image|
+                    .view_box
+                      = image.file_field :content, class: "file", onchange:'previewFile1()'
+                      = image.hidden_field :status, value: "sub"
+      .row.proto-description
+        .col-md-12
+          %h4 Catch Copy
+          = f.text_field :catch_copy, require: true, placeholder: "Input Catch Copy"
+        .col-md-12
+          %h4 Concept
+          = f.text_area :concept, require: true, placeholder: "Input Concept"
+      .row.text-center.proto-btn
+        = f.submit "UPDATE", id: "button", class: "btn btn-lg btn-primary btn-block"

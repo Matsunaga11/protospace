@@ -24,7 +24,7 @@
                 .image-upload
                   = f.fields_for :captured_images do |image|
                     .view_box
-                      = image.file_field :content, class: "file", onchange:'previewFile1()'
+                      = image.file_field :content, class: "file"
                       = image.hidden_field :status, value: "sub"
       .row.proto-description
         .col-md-12

@@ -1,5 +1,4 @@
 class Prototype < ActiveRecord::Base
-  mount_uploader :image, UserImageUploader
   belongs_to :user
   has_many :captured_images, dependent: :destroy
 
