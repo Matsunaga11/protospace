@@ -30,10 +30,13 @@
       %h4 Concept
       %p
         = @prototype.concept
+    -if user_signed_in? && current_user.id == @prototype.user_id
+      .delete_button
+      =link_to "DELETE", prototype_path, method: :delete
     .col-md-3
-      %h4 Tag List
-      %ul.proto-tag-list.list-inline
-        %li
-          %a{href: "#", class: "btn btn-default"} iPad
-        %li
-          %a{href: "#", class: "btn btn-default"} wireframe
+    %h4 Tag List
+    %ul.proto-tag-list.list-inline
+      %li
+        %a{href: "#", class: "btn btn-default"} iPad
+      %li
+        %a{href: "#", class: "btn btn-default"} wireframe
