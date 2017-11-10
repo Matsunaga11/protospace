@@ -1,9 +1,9 @@
-= form_for(@prototype) do |f|
+= form_for:prototype do |f|
   = f.label "catch_copy", class: "catch_copy"
   = f.text_field :catch_copy, id: "copy", class: "copy_input", placeholder: "Catch Copyを入力してください", type: "text"
-
   = f.label "concept", class: "concept"
   = f.text_field :concept, id: "concept", class: "concept_input", placeholder: "Conceptを入力してください", type: "text"
-
-  = fields_for @prototype.captured_images do |image|
-    =image.text_field :content
+  = field_set_tag 'サブ' do
+    = fields_for :captured_images do |image|
+      =image.file_field :content
+  = f.submit "UPDATE"

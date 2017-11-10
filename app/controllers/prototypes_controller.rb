@@ -23,7 +23,13 @@ class PrototypesController < ApplicationController
   end
 
   def edit
+  end
 
+  def update
+    prototype = Prototype.find(params[:id])
+    if prototype.user_id == current_user.id
+      prototype.update(prototype_params)
+    end
   end
 
   private
