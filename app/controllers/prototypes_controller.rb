@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :set_prototype, only: :show
+  before_action :set_prototype, only: [:show, :edit]
 
   def index
     @prototypes = Prototype.all
@@ -27,6 +27,10 @@ class PrototypesController < ApplicationController
     if @prototype.user_id == current_user.id
       @prototype.destroy
     end
+  end
+
+  def edit
+
   end
 
   private
