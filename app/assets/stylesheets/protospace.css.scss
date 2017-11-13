@@ -1,6 +1,16 @@
 /* -- import Roboto Font ------------------------------ */
 @import "//fonts.googleapis.com/css?family=Lato:300,400,700";
 
+
+$accent: #57C3E9;
+$black: #292929;
+$dark: #666;
+$darkGray: #999999;
+$gray: #D8D8D8;
+$lightGray: #f5f5f3;
+$white: white;
+
+
 /*-- Body style ---------------------------------- */
 body {
   font-family: "Lato", 'Helvetica Neue, Helvetica, Arial', sans-serif;
@@ -610,6 +620,40 @@ body {
   color: white;
   font-size: 30px;
   font-weight: 200;
+}
+
+input,textarea {
+    width: 100%;
+    border: 1px solid $gray;
+    border-radius: 5px;
+    font-family: "游ゴシック", "YuGothic";
+  }
+
+input[type="submit"] {
+    background-color: $accent;
+    border-radius: 20px;
+    color: #fff;
+    border: 0;
+    font-size: 18px;
+    &:hover {
+      background-color: lighten($accent, 10%);
+    }
+  }
+.container {
+  box-shadow: 0 0 10px rgba($black,0.2);
+  background-color: $white;
+  box-sizing: border-box;
+}
+
+.comments {
+  padding: 5px;
+  margin-top: 15px;
+  a {
+    color: $accent;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 
