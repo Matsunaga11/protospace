@@ -12,9 +12,10 @@
           %h4 Main Thumbnail
           .cover-image-upload#main_image_uploader
             = f.fields_for :captured_images do |image|
-              %img.cover-image-upload
-                = image.file_field :content, required: true,onchange:'previewFile()'
-                = image.hidden_field :status, value: "main"
+              - if image.object.status == "main"
+                %img.cover-image-upload
+                  = image.file_field :content, required: true,onchange:'previewFile()'
+                  = image.hidden_field :status, value: "main"
 
         .col-md-12
           %h4 Sub Thumbnails
@@ -23,9 +24,10 @@
               %li.list-group-item.col-md-4
                 .image-upload
                   = f.fields_for :captured_images do |image|
-                    .view_box
-                      = image.file_field :content, class: "file", onchange:'previewFile1()'
-                      = image.hidden_field :status, value: "sub"
+                    - if image.object.status == "sub"
+                      .view_box
+                        = image.file_field :content, class: "file", onchange:'previewFile1()'
+                        = image.hidden_field :status, value: "sub"
       .row.proto-description
         .col-md-12
           %h4 Catch Copy
