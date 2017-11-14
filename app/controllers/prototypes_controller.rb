@@ -35,9 +35,10 @@ class PrototypesController < ApplicationController
 
   def update
     if @prototype.update(prototype_params)
-      redirect_to :root, notice: 'New prototype was successfully created'
+      redirect_to prototype_path , notice: 'prototype was successfully updated'
     else
-      redirect_to ({ action: new }), alert: 'YNew prototype was unsuccessfully created'
+      flash.now[:alert] = 'prototype was unsuccessfully updated'
+      render :edit
      end
   end
 
@@ -53,7 +54,7 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-      captured_images_attributes: [:content, :status]
+      captured_images_attributes: [:id, :content, :status]
     )
   end
 end
