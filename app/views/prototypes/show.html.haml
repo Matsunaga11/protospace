@@ -43,8 +43,8 @@
 
     .container
       - if current_user
-        = form_tag("/prototypes/#{@prototype.id}/comments", method: :post) do
-          %textarea{cols: "30", name: "text", placeholder: "コメントする", rows: "2"}
+        = form_tag("/prototypes/#{@prototype.id}/comments", method: :post, class: "new_comment") do
+          %textarea{cols: "30", name: "text", placeholder: "コメントする", rows: "2", class: "textbox"}
           %input{type: "submit", value: "SENT"}
     .comments
       %h4 ＜コメント一覧＞
@@ -53,3 +53,8 @@
           %p
             %strong= link_to comment.user.name, "/users/#{comment.user_id}"
             = comment.text
+            -if user_signed_in? && current_user.id == comment.user.id
+              .delete_button
+              =link_to "削除", "/prototypes/#{@prototype.id}/comments/#{comment.id}", method: :delete
+              .delete_button
+              =link_to "編集", "/prototypes/#{@prototype.id}/comments/#{comment.id}/edit"
