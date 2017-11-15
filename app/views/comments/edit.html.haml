@@ -1,0 +1,5 @@
+.container
+  - if current_user
+    = form_tag("/prototypes/#{@prototype.id}/comments/#{@comment.id}", method: :patch, class: "new_comment") do
+      %textarea{cols: "30", name: "text", rows: "2", class: "textbox"}= @comment.text
+      %input{type: "submit", value: "UPDATE!"}
