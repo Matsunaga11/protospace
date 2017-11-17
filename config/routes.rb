@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     collection do
       get 'index_popular'
+      get 'index_newest'
     end
   end
 
