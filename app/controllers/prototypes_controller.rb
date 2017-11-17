@@ -43,6 +43,17 @@ class PrototypesController < ApplicationController
      end
   end
 
+  def index_popular
+    prototype_ids = Like.group(:prototype_id).order('count_prototype_id DESC').count(:prototype_id).keys
+    @prototypes = prototype_ids.map{|id| Prototype.find(id)}
+    render "prototypes/index"
+  end
+
+  def index_newest
+    @prototypes = Prototype.all.order('created_at DESC')
+    render "prototypes/index"
+  end
+
   private
 
   def set_prototype
