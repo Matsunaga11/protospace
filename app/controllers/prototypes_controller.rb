@@ -52,6 +52,9 @@ class PrototypesController < ApplicationController
   def index_newest
     @prototypes = Prototype.all.order('created_at DESC')
     render "prototypes/index"
+    # respond_to do |format|
+    #   format.html { redirect_to tweet_path(params[:tweet_id])  }
+    #   format.json
   end
 
   private
