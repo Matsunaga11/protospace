@@ -1,0 +1,14 @@
+#tag-page.tag-page
+  .tag-page__inner.clearfix
+    .tag-page__inner--left.tag-page__header
+      %h2 Create Tag
+      %h5 タグの作成
+    .tag-page__inner--right.user-form
+      = form_for @tag do |f|
+        .field
+          .field-label
+            = f.label :Tagname
+          .field-input
+            = f.text_field :name, autofocus: true
+        .actions
+          = f.submit "Create Tag", class: 'btn'

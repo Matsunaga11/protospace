@@ -33,5 +33,24 @@
         .col-md-12
           %h4 Concept
           = f.text_area :concept, require: true, placeholder: "Input Concept"
+
+      .chat-group-form__field.clearfix
+        .chat-group-form__field--left
+          %label.chat-group-form__label{for: "chat_group_チャットメンバーを追加"}タグを追加
+        .chat-group-form__field--right
+          .chat-group-form__search.clearfix
+          %input.chat-group-form__input#user-search-field{placeholder: '追加したいタグを入力してください', type: 'text'}
+          #user-search-result
+
+      .chat-group-form__field.clearfix
+        .chat-group-form__field--left
+          .chat-group-form__label
+            = f.label :タグ
+        .chat-group-form__field--right
+          #chat-group-users
+            .chat-group-user.clearfix#chat-group-user-22
+            %input{name: 'chat_group[tag_ids][]', type: 'hidden', value: '22'}
+              %p.chat-group-user__name1
+
       .row.text-center.proto-btn
         = f.submit "PUBLISH", id: "button", class: "btn btn-lg btn-primary btn-block"

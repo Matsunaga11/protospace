@@ -8,5 +8,9 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show, :edit, :update]
-
+  resources :tags, only: [:new, :create, :index, :show] do
+    collection do
+         get 'search'
+    end
+  end
 end

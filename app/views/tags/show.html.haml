@@ -2,20 +2,21 @@
   .container.text-center
     = image_tag("header_logo.png", alt: "PROTO TYPE - SHARE THE PROTOTYPE", height: "73px")
 
-.filter-nav
-  .container
-    .row
-      %ul.nav.nav-pills.col-lg-11
-        %li.btn-default.btn-popular
-          = link_to "Popular", "#"
-        %li.btn-default.btn-popular
-          = link_to "Newest", "#"
-      = link_to "VIEW TAGS", tags_path, class: "btn btn-default col-lg-1"
-      = link_to "CREATE TAG", new_tag_path, class: "btn btn-default col-lg-1"
-
 .container.proto-list
   .row
-    = render partial: 'prototypes/prototype', collection: @prototypes
+    .col-sm-4.col-md-3.proto-content
+  .thumbnail
+    - @tag.prototypes.each do |prototype|
+      = link_to image_tag(prototype.set_main_thumbnail), prototype_path(prototype)
+      .caption
+        %h3
+          = prototype.title
+        .proto-meta
+          .proto-user
+            = link_to prototype.user.name, user_path(prototype.user)
+          .proto-posted
+            = prototype.posted_date
+
 
 .text-center
   %ul.pagination
