@@ -48,10 +48,9 @@
     .col-md-3
     %h4 Tag List
     %ul.proto-tag-list.list-inline
-      %li
-        %a{href: "#", class: "btn btn-default"} iPad
-      %li
-        %a{href: "#", class: "btn btn-default"} wireframe
+      - @prototype.tags.each do |tag|
+        = link_to tag_path(tag.id) do
+          %li{class: "btn btn-default"}= tag.name
 
     .container
       - if current_user
