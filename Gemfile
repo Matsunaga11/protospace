@@ -17,7 +17,8 @@ gem 'devise'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'rails_12factor'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug'

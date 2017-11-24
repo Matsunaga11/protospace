@@ -2,7 +2,7 @@ class PrototypesController < ApplicationController
   before_action :set_prototype, only: [:show, :edit, :update]
 
   def index
-    @prototypes = Prototype.all
+    @prototypes = Prototype.all.page(params[:page]).per(5)
   end
 
   def new
@@ -41,6 +41,20 @@ class PrototypesController < ApplicationController
       flash.now[:alert] = 'prototype was unsuccessfully updated'
       render :edit
      end
+  end
+
+  def index_popular
+    prototype_ids = Like.group(:prototype_id).order('count_prototype_id DESC').count(:prototype_id).keys
+    @prototypes = prototype_ids.map{|id| Prototype.find(id)}
+    render "prototypes/index"
+  end
+
+  def index_newest
+    @prototypes = Prototype.all.order('created_at DESC')
+    render "prototypes/index"
+    # respond_to do |format|
+    #   format.html { redirect_to tweet_path(params[:tweet_id])  }
+    #   format.json
   end
 
   private
