@@ -46,11 +46,11 @@
       .edit_button
         =link_to "EDIT", edit_prototype_path
     .col-md-3
-    %h4 Tag List
-    %ul.proto-tag-list.list-inline
-      - @prototype.tags.each do |tag|
-        = link_to tag_path(tag.id) do
-          %li{class: "btn btn-default"}= tag.name
+      %h4 Tag List
+      %ul.proto-tag-list.list-inline
+        - @prototype.tags.each do |tag|
+          = link_to tag_path(tag.id) do
+            %li{class: "btn btn-default"}= tag.name
 
     .container
       - if current_user

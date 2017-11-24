@@ -2,7 +2,7 @@ class PrototypesController < ApplicationController
   before_action :set_prototype, only: [:show, :edit, :update]
 
   def index
-    @prototypes = Prototype.all.page(params[:page]).per(5)
+    @prototypes = Prototype.all.page(params[:page]).per(8)
   end
 
   def new
@@ -44,18 +44,15 @@ class PrototypesController < ApplicationController
   end
 
   def index_popular
-    prototype_ids = Like.group(:prototype_id).order('count_prototype_id DESC').count(:prototype_id).keys
-    @prototypes = prototype_ids.map{|id| Prototype.find(id)}
-    render "prototypes/index"
-  end
+   prototype_ids = Like.group(:prototype_id).order('count_prototype_id DESC').count(:prototype_id).keys
+   @prototypes = Prototype.where(id: prototype_ids).order("FIELD(id, #{prototype_ids.join(',')})").page(params[:page]).per(8)
+   render "prototypes/index"
+ end
 
-  def index_newest
-    @prototypes = Prototype.all.order('created_at DESC')
-    render "prototypes/index"
-    # respond_to do |format|
-    #   format.html { redirect_to tweet_path(params[:tweet_id])  }
-    #   format.json
-  end
+ def index_newest
+   @prototypes = Prototype.all.order('created_at DESC').page(params[:page]).per(8)
+   render "prototypes/index"
+ end
 
   private
 
